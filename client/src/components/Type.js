@@ -25,7 +25,16 @@ const Type = ({ orderType }) => {
 
   const ItemComponent = orderType === "products" ? Products : Options;
   const optionItems = items.map((item) => {
-    return <ItemComponent key={item.name} name={item.name} imagePath={item.imagePath} />;
+    return (
+      <ItemComponent
+        key={item.name}
+        name={item.name}
+        imagePath={item.imagePath}
+        updateItemCount={(itemName, newItemCount) => {
+          updateItemCount(itemName, newItemCount, orderType);
+        }}
+      />
+    );
   });
 
   if (error) {
@@ -36,7 +45,7 @@ const Type = ({ orderType }) => {
     <>
       <h2>주문 종류</h2>
       <p>하나의 가격</p>
-      <p>총 가격:</p>
+      <p>총 가격: {orderData.totals[orderType]}</p>
       <div style={{ display: "flex", flexDirection: orderType === "options" ? "column" : "row" }}>{optionItems}</div>
     </>
   );
