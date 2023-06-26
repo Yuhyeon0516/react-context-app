@@ -5,7 +5,7 @@ const SummaryPage = () => {
   return (
     <div>
       <form>
-        <input type="checkbox" checked={checked} id="confirm-checkbox" onClick={(e) => setChecked(e.target.checked)} />
+        <input type="checkbox" checked={checked} id="confirm-checkbox" onChange={(e) => setChecked(e.target.checked)} />
         <label htmlFor="confirm-checkbox">주문하려는 것을 확인하셨나요?</label>
         <br />
         <button disabled={!checked} type="submit">
